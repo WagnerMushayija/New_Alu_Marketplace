@@ -134,3 +134,68 @@ CREATE TABLE IF NOT EXISTS payment_details (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
+--  foreign keys to user_address
+ALTER TABLE user_address 
+ADD CONSTRAINT fk_user_address_user
+FOREIGN KEY (user_id) REFERENCES users(id)
+ON DELETE CASCADE;
+
+-- foreign keys to user_payment
+ALTER TABLE user_payment
+ADD CONSTRAINT fk_user_payment_user
+FOREIGN KEY (user_id) REFERENCES users(id)
+ON DELETE CASCADE;
+
+-- foreign keys to admin_user
+ALTER TABLE admin_user
+ADD CONSTRAINT fk_admin_user_type
+FOREIGN KEY (type_id) REFERENCES admin_type(id)
+ON DELETE SET NULL;
+
+-- foreign keys to product
+ALTER TABLE product
+ADD CONSTRAINT fk_product_category
+FOREIGN KEY (category_id) REFERENCES product_category(id)
+ON DELETE SET NULL,
+ADD CONSTRAINT fk_product_inventory
+FOREIGN KEY (inventory_id) REFERENCES product_inventory(id)
+ON DELETE SET NULL;
+
+--  foreign keys to shopping_session
+ALTER TABLE shopping_session
+ADD CONSTRAINT fk_shopping_session_user
+FOREIGN KEY (user_id) REFERENCES users(id)
+ON DELETE CASCADE;
+
+-- foreign keys to cart_item
+ALTER TABLE cart_item
+ADD CONSTRAINT fk_cart_item_session
+FOREIGN KEY (session_id) REFERENCES shopping_session(id)
+ON DELETE CASCADE,
+ADD CONSTRAINT fk_cart_item_product
+FOREIGN KEY (product_id) REFERENCES product(id)
+ON DELETE CASCADE;
+
+--  foreign keys to order_details
+ALTER TABLE order_details
+ADD CONSTRAINT fk_order_details_user
+FOREIGN KEY (user_id) REFERENCES users(id)
+ON DELETE SET NULL,
+ADD CONSTRAINT fk_order_details_payment
+FOREIGN KEY (payment_id) REFERENCES payment_details(id)
+ON DELETE RESTRICT;
+
+-- foreign keys to order_items
+ALTER TABLE order_items
+ADD CONSTRAINT fk_order_items_order
+FOREIGN KEY (order_id) REFERENCES order_details(id)
+ON DELETE CASCADE,
+ADD CONSTRAINT fk_order_items_product
+FOREIGN KEY (product_id) REFERENCES product(id)
+ON DELETE SET NULL;
+
+--  foreign keys to payment_details
+ALTER TABLE payment_details
+ADD CONSTRAINT fk_payment_details_order
+FOREIGN KEY (order_id) REFERENCES order_details(id)
+ON DELETE CASCADE;
