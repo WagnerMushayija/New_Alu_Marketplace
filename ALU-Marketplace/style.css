@@ -221,6 +221,8 @@ a {
   --bs-navbar-active-color: var(--bs-light);
 }
 
+
+
 /* accordion */
 .accordion {
   --bs-accordion-border-width: 0;
