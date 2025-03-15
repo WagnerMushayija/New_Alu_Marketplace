@@ -21,6 +21,108 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&display=swap" rel="stylesheet">
 
+<style>
+  /* Consistent image sizing and spacing */
+  .product-image {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    margin-bottom: 10px;
+  }
+
+  /* Make category images consistent */
+  .main-swiper .image-holder img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+  }
+
+  /* Fix collection image to match section height */
+  .collection .image-holder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .collection .column-container {
+    height: 100%;
+  }
+
+  /* Fix navigation visibility */
+  .navbar-nav {
+    opacity: 1;
+    visibility: visible;
+    position: relative;
+    background-color: transparent;
+    padding: 0;
+  }
+
+  /* Only hide dropdown menus until hover */
+  .dropdown-menu {
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Adjust nav-menu-container */
+  .nav-menu-container:hover .navbar-nav {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Reduced navbar height */
+  .navbar {
+    padding: 0.5rem 3rem !important;
+  }
+
+  /* Navigation hover effect */
+  .nav-menu-container {
+    position: relative;
+  }
+
+
+  /* Spacing between product items */
+  .swiper-slide {
+    padding: 10px;
+  }
+
+  /* User account dropdown */
+  .user-dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  .user-dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+
+  .user-dropdown:hover .user-dropdown-content {
+    display: block;
+  }
+
+  .user-dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+
+  .user-dropdown-content a:hover {
+    background-color: #f1f1f1;
+  }
+</style>
+
 </head>
 
 <body class="homepage">
@@ -236,159 +338,162 @@
     </div>
   </div>
 
-  <nav class="navbar navbar-expand-lg text-uppercase fs-6 p-3 border-bottom align-items-center" style="background-color: #002e6d;">
+  <nav class="navbar navbar-expand-lg text-uppercase fs-6 border-bottom align-items-center" style="background-color: #002e6d;">
+  <div class="container-fluid">
+    <div class="row justify-content-between align-items-center w-100">
 
-    <div class="container-fluid">
-      <div class="row justify-content-between align-items-center w-100">
+      <div class="col-auto">
+        <a class="navbar-brand text-white" href="index.html">
+          <img src="images/alu-logo.png" alt="Logo" width="60" height="48">
+        </a>
+      </div>
 
-        <div class="col-auto">
-          <a class="navbar-brand text-white" href="index.html">
-            <img src="images/alu-logo.png" alt="Logo" width="75" height="60">
-          </a>
-        </div>
+      <div class="col-auto nav-menu-container">
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+          aria-controls="offcanvasNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-        <div class="col-auto">
-          <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
-            aria-controls="offcanvasNavbar">
-            <span class="navbar-toggler-icon"></span>
-          </button>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
+          aria-labelledby="offcanvasNavbarLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+              aria-label="Close"></button>
+          </div>
 
-          <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
-            aria-labelledby="offcanvasNavbarLabel">
-            <div class="offcanvas-header">
-              <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
-              <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-                aria-label="Close"></button>
-            </div>
-
-            <div class="offcanvas-body">
-              <ul class="navbar-nav justify-content-end flex-grow-1 gap-1 gap-md-5 pe-3">
-                <li class="nav-item">
-                  <a class="nav-link active text-white" href=""index.html>Home</a>
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle text-white" href="#" id="dropdownShop" data-bs-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">Shop</a>
-                  <ul class="dropdown-menu list-unstyled" aria-labelledby="dropdownShop">
-                    <li>
-                      <a href="index.html" class="dropdown-item item-anchor">Womens wear </a>
-                    </li>
-                    <li>
-                      <a href="index.html" class="dropdown-item item-anchor">Mens Wear </a>
-                    </li>
-                    <li>
-                      <a href="index.html" class="dropdown-item item-anchor">Footwear</a>
-                    </li>
-                    <li>
-                      <a href="index.html" class="dropdown-item item-anchor">Jewelry </a>
-                    </li>
-                    <li>
-                      <a href="index.html" class="dropdown-item item-anchor">Handbags </a>
-                    </li>
-                    <li>
-                      <a href="index.html" class="dropdown-item item-anchor">Hats/Beanie</a>
-                    </li>
-                    <li>
-                      <a href="index.html" class="dropdown-item item-anchor">Order Tracking </a>
-                    </li>
-                  </ul>
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle text-white" href="#" id="dropdownBlog" data-bs-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">Blog</a>
-                  <ul class="dropdown-menu list-unstyled" aria-labelledby="dropdownBlog">
-                    <li>
-                      <a href="index.html" class="dropdown-item item-anchor">Blog Classic </a>
-                    </li>
-                    <li>
-                      <a href="index.html" class="dropdown-item item-anchor">Blog Grid with Sidebar </a>
-                    </li>
-                    <li>
-                      <a href="index.html" class="dropdown-item item-anchor">Blog Grid Four Column </a>
-                    </li>
-                    <li>
-                      <a href="index.html" class="dropdown-item item-anchor">Blog No Sidebar </a>
-                    </li>
-                    <li>
-                      <a href="index.html" class="dropdown-item item-anchor">Blog Right Sidebar </a>
-                    </li>
-                    <li>
-                      <a href="index.html" class="dropdown-item item-anchor">Single Post </a>
-                    </li>
-                    <li>
-                      <a href="index.html" class="dropdown-item item-anchor">Single Post No Sidebar </a>
-                    </li>
-                  </ul>
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle text-white" href="#" id="dropdownPages" data-bs-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">Trending</a>
-                  <ul class="dropdown-menu list-unstyled" aria-labelledby="dropdownPages">
-                    <li>
-                      <a href="index.html" class="dropdown-item item-anchor">Explore(New!) </a>
-                    </li>
-                    <li>
-                      <a href="index.html" class="dropdown-item item-anchor">Coming soon</a>
-                    </li>
-                    <li>
-                      <a href="index.html" class="dropdown-item item-anchor">Wishlist </a>
-                    </li>
-                  </ul>
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle text-white" href="#" id="dropdownpages" data-bs-toggle="dropdown"
-                     aria-haspopup="true" aria-expanded="false">Contact</a>
-                  <ul class="dropdown-menu list-unstyled" aria-labelledby="dropdownPages">
-                    <li>
-                      <a href="index.html" class="dropdown-item item-anchor"> FAQs </a>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-end flex-grow-1 gap-1 gap-md-5 pe-3">
+              <li class="nav-item">
+                <a class="nav-link active text-white" href="index.html">Home</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-white" href="#" id="dropdownShop" data-bs-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">Shop</a>
+                <ul class="dropdown-menu list-unstyled" aria-labelledby="dropdownShop">
+                  <li>
+                    <a href="index.html" class="dropdown-item item-anchor">Accessories </a>
+                  </li>
+                  <li>
+                    <a href="index.html" class="dropdown-item item-anchor">Mens Wear </a>
+                  </li>
+                  <li>
+                    <a href="index.html" class="dropdown-item item-anchor">Footwear</a>
+                  </li>
+                  <li>
+                    <a href="index.html" class="dropdown-item item-anchor">Jewelry </a>
+                  </li>
+                  <li>
+                    <a href="index.html" class="dropdown-item item-anchor">Handbags </a>
+                  </li>
+                  <li>
+                    <a href="index.html" class="dropdown-item item-anchor">Hats/Beanie</a>
+                  </li>
+                  <li>
+                    <a href="index.html" class="dropdown-item item-anchor">Order Tracking </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-white" href="#" id="dropdownBlog" data-bs-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">Blog</a>
+                <ul class="dropdown-menu list-unstyled" aria-labelledby="dropdownBlog">
+                  <li>
+                    <a href="index.html" class="dropdown-item item-anchor">Blog Classic </a>
+                  </li>
+                  <li>
+                    <a href="index.html" class="dropdown-item item-anchor">Blog Grid with Sidebar </a>
+                  </li>
+                  <li>
+                    <a href="index.html" class="dropdown-item item-anchor">Blog Grid Four Column </a>
+                  </li>
+                  <li>
+                    <a href="index.html" class="dropdown-item item-anchor">Blog No Sidebar </a>
+                  </li>
+                  <li>
+                    <a href="index.html" class="dropdown-item item-anchor">Blog Right Sidebar </a>
+                  </li>
+                  <li>
+                    <a href="index.html" class="dropdown-item item-anchor">Single Post </a>
+                  </li>
+                  <li>
+                    <a href="index.html" class="dropdown-item item-anchor">Single Post No Sidebar </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-white" href="#" id="dropdownPages" data-bs-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">Trending</a>
+                <ul class="dropdown-menu list-unstyled" aria-labelledby="dropdownPages">
+                  <li>
+                    <a href="index.html" class="dropdown-item item-anchor">Explore(New!) </a>
+                  </li>
+                  <li>
+                    <a href="index.html" class="dropdown-item item-anchor">Coming soon</a>
+                  </li>
+                  <li>
+                    <a href="index.html" class="dropdown-item item-anchor">Wishlist </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-white" href="#" id="dropdownpages" data-bs-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">Contact</a>
+                <ul class="dropdown-menu list-unstyled" aria-labelledby="dropdownPages">
+                  <li>
+                    <a href="index.html" class="dropdown-item item-anchor"> FAQs </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
           </div>
         </div>
+      </div>
 
-        <div class="col-3 col-lg-auto">
-          <ul class="list-unstyled d-flex m-0">
-            <li class="d-none d-lg-block">
-              <a href="index.html" class="text-uppercase mx-3 text-white">Wishlist <span class="wishlist-count">(0)</span>
-              </a>
-            </li>
-            <li class="d-none d-lg-block">
-              <a href="index.html" class="text-uppercase mx-3 text-white" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart"
-                aria-controls="offcanvasCart">Cart <span class="cart-count">(0)</span>
-              </a>
-            </li>
-            <li class="d-lg-none">
-              <a href="#" class="mx-2">
-                <svg width="24" height="24" viewBox="0 0 24 24">
-                  <use xlink:href="#heart"></use>
-                </svg>
-              </a>
-            </li>
-            <li class="d-lg-none">
-              <a href="#" class="mx-2" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart"
-                aria-controls="offcanvasCart">
-                <svg width="24" height="24" viewBox="0 0 24 24">
-                  <use xlink:href="#cart"></use>
-                </svg>
-              </a>
-            </li>
-            <li class="search-box mx-2">
-              <a href="#search" class="search-button text-white">
-                <svg width="24" height="24" viewBox="0 0 24 24">
-                  <use xlink:href="#search"></use>
-                </svg>
-              </a>
-            </li>
-          </ul>
-        </div>
-
+      <div class="col-3 col-lg-auto">
+        <ul class="list-unstyled d-flex m-0">
+          <li class="d-none d-lg-block">
+            <a href="index.html" class="text-uppercase mx-3 text-white">Wishlist <span class="wishlist-count">(0)</span>
+            </a>
+          </li>
+          <li class="d-none d-lg-block">
+            <a href="index.html" class="text-uppercase mx-3 text-white" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart"
+              aria-controls="offcanvasCart">Cart <span class="cart-count">(0)</span>
+            </a>
+          </li>
+          <li class="d-lg-none">
+            <a href="#" class="mx-2">
+              <svg width="24" height="24" viewBox="0 0 24 24">
+                <use xlink:href="#heart"></use>
+              </svg>
+            </a>
+          </li>
+          <li class="d-lg-none">
+            <a href="#" class="mx-2" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart"
+              aria-controls="offcanvasCart">
+              <svg width="24" height="24" viewBox="0 0 24 24">
+                <use xlink:href="#cart"></use>
+              </svg>
+            </a>
+          </li>
+          <li class="user-dropdown mx-2">
+            <a href="#" class="text-white">
+              <svg width="24" height="24" viewBox="0 0 24 24">
+                <use xlink:href="#user"></use>
+              </svg>
+            </a>
+            <div class="user-dropdown-content">
+              <a href="login.html">Login</a>
+              <a href="signup.html">Sign Up</a>
+            </div>
+          </li>
+        </ul>
       </div>
 
     </div>
-  </nav>
+
+  </div>
+</nav>
 
   <section id="billboard" class="bg-light py-5">
     <div class="container">
@@ -416,7 +521,7 @@
                   </h5>
                   <p>Scelerisque duis aliquam qui lorem ipsum dolor amet, consectetur adipiscing elit.</p>
                   <div class="btn-left">
-                    <a href="#" class="btn-link fs-6 text-uppercase item-anchor text-decoration-none">Discover Now</a>
+                    <a href="shop.html" class="btn-link fs-6 text-uppercase item-anchor text-decoration-none">Discover Now</a>
                   </div>
                 </div>
               </div>
@@ -434,7 +539,7 @@
                   </h5>
                   <p>Scelerisque duis aliquam qui lorem ipsum dolor amet, consectetur adipiscing elit.</p>
                   <div class="btn-left">
-                    <a href="#" class="btn-link fs-6 text-uppercase item-anchor text-decoration-none">Discover Now</a>
+                    <a href="shop.html" class="btn-link fs-6 text-uppercase item-anchor text-decoration-none">Discover Now</a>
                   </div>
                 </div>
               </div>
@@ -452,7 +557,7 @@
                   </h5>
                   <p>Scelerisque duis aliquam qui lorem ipsum dolor amet, consectetur adipiscing elit.</p>
                   <div class="btn-left">
-                    <a href="#" class="btn-link fs-6 text-uppercase item-anchor text-decoration-none">Discover Now</a>
+                    <a href="shop.html" class="btn-link fs-6 text-uppercase item-anchor text-decoration-none">Discover Now</a>
                   </div>
                 </div>
               </div>
@@ -470,7 +575,7 @@
                   </h5>
                   <p>Scelerisque duis aliquam qui lorem ipsum dolor amet, consectetur adipiscing elit.</p>
                   <div class="btn-left">
-                    <a href="#" class="btn-link fs-6 text-uppercase item-anchor text-decoration-none">Discover Now</a>
+                    <a href="shop.html" class="btn-link fs-6 text-uppercase item-anchor text-decoration-none">Discover Now</a>
                   </div>
                 </div>
               </div>
@@ -488,7 +593,7 @@
                   </h5>
                   <p>Scelerisque duis aliquam qui lorem ipsum dolor amet, consectetur adipiscing elit.</p>
                   <div class="btn-left">
-                    <a href="#" class="btn-link fs-6 text-uppercase item-anchor text-decoration-none">Discover Now</a>
+                    <a href="shop.html" class="btn-link fs-6 text-uppercase item-anchor text-decoration-none">Discover Now</a>
                   </div>
                 </div>
               </div>
@@ -506,7 +611,7 @@
                   </h5>
                   <p>Scelerisque duis aliquam qui lorem ipsum dolor amet, consectetur adipiscing elit.</p>
                   <div class="btn-left">
-                    <a href="#" class="btn-link fs-6 text-uppercase item-anchor text-decoration-none">Discover Now</a>
+                    <a href="shop.html" class="btn-link fs-6 text-uppercase item-anchor text-decoration-none">Discover Now</a>
                   </div>
                 </div>
               </div>
@@ -574,13 +679,13 @@
           <div class="col-md-4">
             <div class="cat-item image-zoom-effect">
               <div class="image-holder">
-                <a href="index.html">
+                <a href="shop.html">
                   <img src="images\shopformen.jpg" alt="categories" class="product-image img-fluid">
                 </a>
               </div>
               <div class="category-content">
                 <div class="product-button">
-                  <a href="index.html" class="btn btn-common text-uppercase">Shop for men</a>
+                  <a href="shop.html" class="btn btn-common text-uppercase">Shop for men</a>
                 </div>
               </div>
             </div>
@@ -588,13 +693,13 @@
           <div class="col-md-4">
             <div class="cat-item image-zoom-effect">
               <div class="image-holder">
-                <a href="index.html">
+                <a href="shop.html">
                   <img src="images/shopwomen.jpg" alt="categories" class="product-image img-fluid">
                 </a>
               </div>
               <div class="category-content">
                 <div class="product-button">
-                  <a href="index.html" class="btn btn-common text-uppercase">Shop for women</a>
+                  <a href="shop.html" class="btn btn-common text-uppercase">Shop for women</a>
                 </div>
               </div>
             </div>
@@ -602,13 +707,13 @@
           <div class="col-md-4">
             <div class="cat-item image-zoom-effect">
               <div class="image-holder">
-                <a href="index.html">
+                <a href="shop.html">
                   <img src="images/cat-item3.jpg" alt="categories" class="product-image img-fluid">
                 </a>
               </div>
               <div class="category-content">
                 <div class="product-button">
-                  <a href="index.html" class="btn btn-common text-uppercase">Shop accessories</a>
+                  <a href="shop.html" class="btn btn-common text-uppercase">Shop accessories</a>
                 </div>
               </div>
             </div>
@@ -659,7 +764,7 @@
                 </a>
                 <div class="product-content">
                   <h5 class="text-uppercase fs-5 mt-3">
-                    <a href="index.html">Screenprint Sweatshirt 
+                    <a href="index.html">Screenprint Sweatshirt
                       UK size 8 US size 9
                     </a>
                   </h5>
@@ -769,165 +874,6 @@
     </div>
   </section>
 
-  <section id="best-sellers" class="best-sellers product-carousel py-5 position-relative overflow-hidden">
-    <div class="container">
-      <div class="d-flex flex-wrap justify-content-between align-items-center mt-5 mb-3">
-        <h4 class="text-uppercase">Best Selling Items</h4>
-        <a href="index.html" class="btn-link">View All Products</a>
-      </div>
-      <div class="swiper product-swiper open-up" data-aos="zoom-out">
-        <div class="swiper-wrapper d-flex">
-          <div class="swiper-slide">
-            <div class="product-item image-zoom-effect link-effect">
-              <div class="image-holder">
-                <a href="index.html">
-                  <img src="images/product-item-4.jpg" alt="categories" class="product-image img-fluid">
-                </a>
-                <a href="index.html" class="btn-icon btn-wishlist">
-                  <svg width="24" height="24" viewBox="0 0 24 24">
-                    <use xlink:href="#heart"></use>
-                  </svg>
-                </a>
-                <div class="product-content">
-                  <h5 class="text-uppercase fs-5 mt-3">
-                    <a href="index.html">Dark florish onepiece</a>
-                  </h5>
-                  <a href="index.html" class="text-decoration-none" data-after="Add to cart"><span>$95.00</span></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="product-item image-zoom-effect link-effect">
-              <div class="image-holder">
-                <a href="index.html">
-                  <img src="images/product-item-3.jpg" alt="product" class="product-image img-fluid">
-                </a>
-                <a href="index.html" class="btn-icon btn-wishlist">
-                  <svg width="24" height="24" viewBox="0 0 24 24">
-                    <use xlink:href="#heart"></use>
-                  </svg>
-                </a>
-                <div class="product-content">
-                  <h5 class="text-uppercase fs-5 mt-3">
-                    <a href="index.html">Baggy Shirt</a>
-                  </h5>
-                  <a href="index.html" class="text-decoration-none" data-after="Add to cart"><span>$55.00</span></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="product-item image-zoom-effect link-effect">
-              <div class="image-holder">
-                <a href="index.html">
-                  <img src="images/product-item-5.jpg" alt="categories" class="product-image img-fluid">
-                </a>
-                <a href="index.html" class="btn-icon btn-wishlist">
-                  <svg width="24" height="24" viewBox="0 0 24 24">
-                    <use xlink:href="#heart"></use>
-                  </svg>
-                </a>
-                <div class="product-content">
-                  <h5 class="text-uppercase fs-5 mt-3">
-                    <a href="index.html">Cotton off-white shirt</a>
-                  </h5>
-                  <a href="index.html" class="text-decoration-none" data-after="Add to cart"><span>$65.00</span></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="product-item image-zoom-effect link-effect">
-              <div class="image-holder">
-                <a href="index.html">
-                  <img src="images/product-item-6.jpg" alt="categories" class="product-image img-fluid">
-                </a>
-                <a href="index.html" class="btn-icon btn-wishlist">
-                  <svg width="24" height="24" viewBox="0 0 24 24">
-                    <use xlink:href="#heart"></use>
-                  </svg>
-                </a>
-                <div class="product-content">
-                  <h5 class="text-uppercase fs-5 mt-3">
-                    <a href="index.html">Handmade crop sweater</a>
-                  </h5>
-                  <a href="index.html" class="text-decoration-none" data-after="Add to cart"><span>$50.00</span></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="product-item image-zoom-effect link-effect">
-              <div class="image-holder">
-                <a href="index.html">
-                  <img src="images/product-item-9.jpg" alt="categories" class="product-image img-fluid">
-                </a>
-                <a href="index.html" class="btn-icon btn-wishlist">
-                  <svg width="24" height="24" viewBox="0 0 24 24">
-                    <use xlink:href="#heart"></use>
-                  </svg>
-                </a>
-                <div class="product-content">
-                  <h5 class="text-uppercase fs-5 mt-3">
-                    <a href="index.html">Dark florish onepiece</a>
-                  </h5>
-                  <a href="index.html" class="text-decoration-none" data-after="Add to cart"><span>$70.00</span></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="product-item image-zoom-effect link-effect">
-              <div class="image-holder">
-                <a href="index.html">
-                  <img src="images/product-item-10.jpg" alt="categories" class="product-image img-fluid">
-                </a>
-                <a href="index.html" class="btn-icon btn-wishlist">
-                  <svg width="24" height="24" viewBox="0 0 24 24">
-                    <use xlink:href="#heart"></use>
-                  </svg>
-                </a>
-                <div class="product-content">
-                  <h5 class="text-uppercase fs-5 mt-3">
-                    <a href="index.html">Cotton off-white shirt</a>
-                  </h5>
-                  <a href="index.html" class="text-decoration-none" data-after="Add to cart"><span>$70.00</span></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-pagination"></div>
-      </div>
-      <div class="icon-arrow icon-arrow-left"><svg width="50" height="50" viewBox="0 0 24 24">
-          <use xlink:href="#arrow-left"></use>
-        </svg></div>
-      <div class="icon-arrow icon-arrow-right"><svg width="50" height="50" viewBox="0 0 24 24">
-          <use xlink:href="#arrow-right"></use>
-        </svg></div>
-    </div>
-  </section>
-
-  <section class="video py-5 overflow-hidden">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="video-content open-up" data-aos="zoom-out">
-          <div class="video-bg">
-            <img src="images/video-image.jpg" alt="video" class="video-image img-fluid">
-          </div>
-          <div class="video-player">
-            <a class="youtube" href="https://www.youtube.com/embed/pjtsGzQjFM4">
-              <svg width="24" height="24" viewBox="0 0 24 24">
-                <use xlink:href="#play"></use>
-              </svg>
-              <img src="images/text-pattern.png" alt="pattern" class="text-rotate">
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <section class="testimonials py-5 bg-light">
     <div class="section-header text-center mt-5">
@@ -1160,19 +1106,6 @@
     </div>
   </section>
 
-  <section class="logo-bar py-5 my-5">
-    <div class="container">
-      <div class="row">
-        <div class="logo-content d-flex flex-wrap justify-content-between">
-          <img src="images/logo1.png" alt="logo" class="logo-image img-fluid">
-          <img src="images/logo2.png" alt="logo" class="logo-image img-fluid">
-          <img src="images/logo3.png" alt="logo" class="logo-image img-fluid">
-          <img src="images/logo4.png" alt="logo" class="logo-image img-fluid">
-          <img src="images/logo5.png" alt="logo" class="logo-image img-fluid">
-        </div>
-      </div>
-    </div>
-  </section>
 
 <section class="newsletter bg-light" style="background: url(images/pattern-bg.png) no-repeat;">
   <div class="container">
@@ -1389,6 +1322,33 @@
     crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
   <script src="js/script.min.js"></script>
+
+<script>
+  // Ensure all product images have consistent dimensions
+  document.addEventListener('DOMContentLoaded', function() {
+    // Initialize dropdown hover effect
+    const dropdowns = document.querySelectorAll('.dropdown');
+
+    dropdowns.forEach(dropdown => {
+      dropdown.addEventListener('mouseenter', function() {
+        const dropdownMenu = this.querySelector('.dropdown-menu');
+        if (dropdownMenu) {
+          dropdownMenu.style.opacity = '1';
+          dropdownMenu.style.visibility = 'visible';
+        }
+      });
+
+      dropdown.addEventListener('mouseleave', function() {
+        const dropdownMenu = this.querySelector('.dropdown-menu');
+        if (dropdownMenu) {
+          dropdownMenu.style.opacity = '0';
+          dropdownMenu.style.visibility = 'hidden';
+        }
+      });
+    });
+  });
+</script>
 </body>
 
 </html>
+
