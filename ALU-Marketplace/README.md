@@ -1,73 +1,60 @@
-It is a free HTML CSS template by https://templatesjungle.com/
-You can use this template as a starter template and start building as you require.
+# ALU Marketplace
 
-The code is consistent and can be easily maintained as we have followed a good coding standard. We want everyone to easily understand it and modify it according to their requirement. As the main goal of providing these templates is to give you something to work on before even starting.
+## Project Overview
+ALU Marketplace is an e-commerce platform designed for students at the African Leadership University to buy and sell unique handmade items. The website includes features such as user authentication (sign-up and login), an add-to-cart system, and a checkout process.
 
-Preview URL: https://demo.templatesjungle.com/kaira/
+## Features
+- User authentication (Sign-up/Login)
+- Add-to-cart functionality
+- Checkout process
+- Product listing with categories
+- Wishlist feature
+- Responsive design with Bootstrap 5
 
-Get the Full Version here: 
-https://templatesjungle.gumroad.com/l/kaira-bootstrap-ecommerce-template
+## Technologies Used
+- HTML, CSS, JavaScript
+- Bootstrap 5
+- Swiper.js for sliders
+- Google Fonts for typography
 
+## Installation and Setup
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/your-repo/alu-marketplace.git
+   ```
+2. Navigate to the project folder:
+   ```sh
+   cd alu-marketplace
+   ```
+3. Open `index.html` in a browser to view the website.
 
-FREE FOR BOTH PERSONAL AND COMMERCIAL USE
+## File Structure
+```
+/alu-marketplace
+│── index.html          # Main HTML file
+│── style.css           # Main CSS file
+│── script.js           # JavaScript for interactivity
+│── /css                # Additional CSS files
+│── /js                 # Additional JavaScript files
+│── /images             # Image assets
+│── /fonts              # Font assets
+```
 
-This HTML Template is provided by TemplatesJungle.com and is free to use in both personal and commercial projects as long as you don't remove our credit link in the footer.
+## Usage
+- Users can sign up and log in to access personalized features.
+- Products can be added to the cart and checked out.
+- Navigation includes category-based browsing for easy product discovery.
 
-However, you can remove the credit link by paying for No Attribution version of the template.
+## Contributors
+- **Frontend Developers**: Worked on UI/UX using HTML, CSS, and Bootstrap.
+- **Backend Developers**: Managed user authentication and shopping cart logic.
+- **Designers**: Created UI mockups in Figma before implementation.
 
+## License
+This project is open-source under the MIT License.
 
-RIGHTS
+---
+For any issues or contributions, please open an issue on GitHub.
 
-You are allowed to use it in your personal projects and commercial projects.
-
-You can modify and sell it to your clients.
-
-
-PROHIBITIONS
-
-You cannot remove the credit link which links back to templatesjungle.com.
-
-You are not permitted to resell or redistribute (paid or free) as it is. 
-
-You cannot use it to build premium templates, themes or any other goods to be sold on marketplaces.
-
-If you want to share the free resource in your blog, you must point it to original TemplatesJungle.com resource page. 
-
-You cannot host the download file in your website.
-
-
-SUPPORT
-
-You can contact us to report any bugs and errors in the template. We will try and fix them immediately although it's a free resource.
-
-Feel free to let us know about what you want to see in the future downloads. We will definitely give it a thought while creating our next freebie.
-
-
-CREDITS & REFERENCES
-
-https://getbootstrap.com/
-
-Stock Photos
-https://unsplash.com/
-https://www.freepik.com/
-https://www.pexels.com/
-
-Fonts
-Google fonts
-https://fonts.google.com/
-
-Icons
-https://icon-sets.iconify.design/
-
-Bootstrap Framework
-https://getbootstrap.com/
-
-JQuery Plugins
-
-Swiper Slider - https://swiperjs.com/
-Chocolat.js – a Free Lightbox Plugin -http://chocolat.insipi.de/
-Magnific Lightbox - https://github.com/dimsemenov/Magnific-Popup
-
-Thanks for downloading from TemplatesJungle.com !
 
 
