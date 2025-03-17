@@ -1,0 +1,41 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "ALU Marketplace API",
+    "version": "1.0.0",
+    "description": "API documentation for ALU Marketplace"
+  },
+  "basePath": "/api",
+  "paths": {
+    "/products": {
+      "get": {
+        "summary": "Get all products",
+        "responses": {
+          "200": {
+            "description": "A list of products"
+          }
+        }
+      }
+    },
+    "/product-categories": {
+      "get": {
+        "summary": "Get all product categories",
+        "responses": {
+          "200": {
+            "description": "A list of product categories"
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "summary": "User login",
+        "responses": {
+          "200": {
+            "description": "Login successful"
+          }
+        }
+      }
+    }
+  }
+}
