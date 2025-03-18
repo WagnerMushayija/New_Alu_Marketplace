@@ -30,9 +30,44 @@
     "/auth/login": {
       "post": {
         "summary": "User login",
+        "description": "Authenticate user and return a token",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "type": "string",
+                  "example": "testuser"
+                },
+                "password": {
+                  "type": "string",
+                  "format": "password",
+                  "example": "securepassword"
+                }
+              },
+              "required": ["username", "password"]
+            }
+          }
+        ],
         "responses": {
           "200": {
-            "description": "Login successful"
+            "description": "Login successful",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "token": {
+                  "type": "string",
+                  "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Invalid credentials"
           }
         }
       }
