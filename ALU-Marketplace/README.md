@@ -50,8 +50,6 @@ ALU Marketplace is an e-commerce platform designed for students at the African L
 - **Backend Developers**: Managed user authentication and shopping cart logic.
 - **Designers**: Created UI mockups in Figma before implementation.
 
-## License
-This project is open-source under the MIT License.
 
 ---
 For any issues or contributions, please open an issue on GitHub.
