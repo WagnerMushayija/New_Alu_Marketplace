@@ -20,23 +20,25 @@ exports.validateOrder = (req, res, next) => {
   };
   
   exports.validateProduct = (req, res, next) => {
-    // Basic validation for products
-    const { name, price } = req.body;
+    console.log('Incoming Product Request Body:', req.body);
     
+    const { name, price } = req.body;
+   
     if (!name || name.trim() === '') {
       return res.status(400).json({
         success: false,
         message: 'Product name is required'
       });
     }
-    
+   
     if (!price || isNaN(parseFloat(price)) || parseFloat(price) <= 0) {
       return res.status(400).json({
         success: false,
         message: 'Valid product price is required'
       });
     }
-    
+   
     next();
   };
+  
   

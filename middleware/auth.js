@@ -1,3 +1,4 @@
+// middleware/auth.js
 const jwt = require('jsonwebtoken');
 const { pool } = require('../config/db');
 
@@ -15,15 +16,22 @@ exports.verifyToken = async (req, res, next) => {
     let decoded;
     try {
       decoded = jwt.verify(token, process.env.JWT_SECRET);
+      console.log('Decoded Token:', decoded); // Debugging
     } catch (err) {
-      if (err.name === 'TokenExpiredError') {
-        return res.status(401).json({ success: false, message: 'Session expired. Please log in again.' });
-      }
+      console.error('JWT Verification Error:', err);
       return res.status(401).json({ success: false, message: 'Invalid token.' });
+    }
+
+    // Ensure decoded has an id
+    if (!decoded.id) {
+      console.error('JWT does not contain user ID');
+      return res.status(401).json({ success: false, message: 'Invalid token. User ID missing.' });
     }
 
     // Check if user exists in the database
     const [users] = await pool.query('SELECT id, username, email, role FROM users WHERE id = ?', [decoded.id]);
+
+    console.log('User Query Result:', users); // Debugging
 
     if (users.length === 0) {
       return res.status(401).json({ success: false, message: 'Invalid token. User not found.' });
@@ -43,6 +51,8 @@ exports.isAdmin = (req, res, next) => {
   if (!req.user) {
     return res.status(401).json({ success: false, message: 'Authentication required.' });
   }
+
+  console.log('User Role:', req.user.role); // Debugging
 
   if (req.user.role !== 'admin') {
     return res.status(403).json({ success: false, message: 'Forbidden. Admin access required.' });

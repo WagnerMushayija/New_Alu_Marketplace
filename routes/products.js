@@ -12,7 +12,8 @@ const auth = require('../middleware/auth');
 const { rateLimit } = require('../middleware/security');
 
 // Configure multer for memory storage
-const upload = multer({ /* configuration */ });
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
 
 // Apply rate limiting to all product routes
 const productLimiter = rateLimit({

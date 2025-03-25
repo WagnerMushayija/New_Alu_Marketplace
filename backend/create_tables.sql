@@ -3,9 +3,10 @@ USE aluMarketplace;
 
 -- Users Table DONE
 CREATE TABLE IF NOT EXISTS users (
-    id INT UNSIGNED NOT NULL,
-    username VARCHAR(255) NOT NULL,
-    password TEXT NOT NULL,
+    id INT UNSIGNED AUTO_INCREMENT NOT NULL,  -- Added AUTO_INCREMENT
+    username VARCHAR(50) UNIQUE NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
     first_name VARCHAR(100),
     last_name VARCHAR(100),
     telephone VARCHAR(20),
@@ -44,6 +45,7 @@ CREATE TABLE IF NOT EXISTS admin_type (
 CREATE TABLE IF NOT EXISTS admin_user (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(255) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
     password TEXT NOT NULL,
     first_name VARCHAR(100),
     last_name VARCHAR(100),

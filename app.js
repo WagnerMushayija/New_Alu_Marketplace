@@ -10,20 +10,40 @@ const errorHandler = require('./middleware/error');
 // Import routes
 const authRoutes = require('./routes/auth');
 const productRoutes = require('./routes/products');
-const productCategoryRoutes = require('./routes/productCategories'); // Changed from categories
+const productCategoryRoutes = require('./routes/productCategories');
 const cartRoutes = require('./routes/cart');
 const orderRoutes = require('./routes/orders');
 const userRoutes = require('./routes/users');
 const paymentRoutes = require('./routes/payments');
 
+// Import middleware
+const { verifyToken, isAdmin } = require('./middleware/auth');
+
 // Initialize express app
 const app = express();
+
+// Comprehensive Logging Middleware
+app.use((req, res, next) => {
+  console.log(`Incoming Request: ${req.method} ${req.path}`);
+  console.log('Request Body:', req.body);
+  next();
+});
 
 // Middleware
 app.use(cors());
 app.use(helmet());
 app.use(morgan('dev'));
-app.use(express.json());
+app.use(express.json({
+  // Add error handling for JSON parsing
+  verify: (req, res, buf) => {
+    try {
+      JSON.parse(buf.toString());
+    } catch (e) {
+      console.error('Invalid JSON:', e);
+      throw new Error('Invalid JSON');
+    }
+  }
+}));
 app.use(express.urlencoded({ extended: true }));
 
 // Static files directory for uploaded images
@@ -31,12 +51,14 @@ app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
 
 // API routes
 app.use('/api/auth', authRoutes);
-app.use('/api/products', productRoutes);
-app.use('/api/product-categories', productCategoryRoutes); // Changed from categories
-app.use('/api/cart', cartRoutes);
-app.use('/api/orders', orderRoutes);
-app.use('/api/users', userRoutes);
-app.use('/api/payments', paymentRoutes);
+
+// Protect these routes with authentication and authorization middleware
+app.use('/api/products', verifyToken, isAdmin, productRoutes);
+app.use('/api/product-categories', verifyToken, isAdmin, productCategoryRoutes);
+app.use('/api/cart', verifyToken, cartRoutes);
+app.use('/api/orders', verifyToken, orderRoutes);
+app.use('/api/users', verifyToken, userRoutes);
+app.use('/api/payments', verifyToken, paymentRoutes);
 
 // API documentation route
 if (process.env.NODE_ENV !== 'production') {
@@ -47,10 +69,40 @@ if (process.env.NODE_ENV !== 'production') {
 
 // Default route
 app.get('/', (req, res) => {
-  res.json({ message: 'Welcome to ALU Marketplace API' });
+  res.json({ message: 'Welcome to ALU Marketplace ' });
+});
+
+// 404 Handler
+app.use((req, res, next) => {
+  console.log(`404 - Not Found: ${req.method} ${req.path}`);
+  res.status(404).json({
+    success: false,
+    message: 'Endpoint not found'
+  });
+});
+
+// Additional error tracking
+app.use((err, req, res, next) => {
+  console.error('Unhandled Error Middleware:', {
+    message: err.message,
+    stack: err.stack,
+    method: req.method,
+    path: req.path,
+    body: req.body
+  });
+  next(err);
 });
 
 // Error handling middleware
 app.use(errorHandler);
+
+// Global unhandled rejection and exception handlers
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('Unhandled Rejection at:', promise, 'reason:', reason);
+});
+
+process.on('uncaughtException', (error) => {
+  console.error('Uncaught Exception:', error);
+});
 
 module.exports = app;
