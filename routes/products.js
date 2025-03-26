@@ -10,6 +10,7 @@ const {
 } = require('../controllers/productController');
 const auth = require('../middleware/auth');
 const { rateLimit } = require('../middleware/security');
+const { validateProduct } = require('../middleware/validation');
 
 // Configure multer for memory storage
 const storage = multer.memoryStorage();
@@ -28,8 +29,20 @@ router.get('/', getAllProducts);
 router.get('/:id', getProductById);
 
 // Protected routes (admin only)
-router.post('/', auth.verifyToken, auth.isAdmin, upload.single('image'), createProduct);
-router.put('/:id', auth.verifyToken, auth.isAdmin, upload.single('image'), updateProduct);
+router.post('/', 
+  auth.verifyToken, 
+  auth.isAdmin, 
+  upload.single('image'), 
+  validateProduct,  // Add this validation middleware
+  createProduct
+);
+router.put('/:id', 
+  auth.verifyToken, 
+  auth.isAdmin, 
+  upload.single('image'), 
+  validateProduct,  // Add this validation middleware
+  updateProduct
+);
 router.delete('/:id', auth.verifyToken, auth.isAdmin, deleteProduct);
 
 module.exports = router;

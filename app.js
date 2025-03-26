@@ -7,6 +7,18 @@ require('dotenv').config();
 
 const errorHandler = require('./middleware/error');
 
+const debugMiddleware = (req, res, next) => {
+  console.log('===== DEBUG REQUEST =====');
+  console.log('Method:', req.method);
+  console.log('Path:', req.path);
+  console.log('Headers:', req.headers);
+  console.log('Query:', req.query);
+  console.log('Body:', req.body);
+  console.log('Params:', req.params);
+  console.log('========================');
+  next();
+};
+
 // Import routes
 const authRoutes = require('./routes/auth');
 const productRoutes = require('./routes/products');
@@ -23,6 +35,8 @@ const { verifyToken, isAdmin } = require('./middleware/auth');
 const app = express();
 
 // Comprehensive Logging Middleware
+
+app.use(debugMiddleware);
 app.use((req, res, next) => {
   console.log(`Incoming Request: ${req.method} ${req.path}`);
   console.log('Request Body:', req.body);
