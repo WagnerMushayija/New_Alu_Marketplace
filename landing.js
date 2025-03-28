@@ -1,6 +1,5 @@
 // const ApiKey = "51e0340903ab81aa5b673b2339f4a098"
 
-// Fetch and display product categories
 fetch('http://localhost:5000/api/product-categories')
     .then(response => {
         if (!response.ok) {
