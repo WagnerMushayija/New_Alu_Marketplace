@@ -1,27 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const auth = require('../middleware/auth');
+const paymentController = require('../controllers/paymentController');
+const { verifyToken, isAdmin } = require('../middleware/auth');
 
-// Placeholder controller
-const paymentController = {
-  processPayment: (req, res) => {
-    res.status(200).json({
-      success: true,
-      message: 'Payment processed successfully',
-      data: { transactionId: 'tx_' + Date.now(), amount: req.body.amount }
-    });
-  },
-  getPaymentStatus: (req, res) => {
-    res.status(200).json({
-      success: true,
-      message: 'Payment status retrieved',
-      data: { transactionId: req.params.id, status: 'completed' }
-    });
-  }
-};
+// Create a new payment
+router.post('/', verifyToken, paymentController.createPayment);
 
-router.post('/process', auth.verifyToken, paymentController.processPayment);
-router.get('/:id', auth.verifyToken, paymentController.getPaymentStatus);
+// Get payment by ID
+router.get('/:id', verifyToken, paymentController.getPaymentById);
 
-module.exports = router;
+// Update payment status (admin only)
+router.patch('/:id/status', verifyToken, isAdmin, paymentController.updatePaymentStatus);
 
+ module.exports = router;
