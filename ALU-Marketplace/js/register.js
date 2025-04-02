@@ -4,14 +4,15 @@ function handleLogin(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const username = formData.get("username");
+    const email = formData.get("email");
     const password = formData.get("password");
 
-    fetch("http://localhost:5000/api/auth/login", {
+    fetch("http://localhost:5000/api/auth/register", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({ username, password })
+        body: JSON.stringify({ username, email, password })
     })
     .then(response => response.json())
     .then(data => {
@@ -29,7 +30,7 @@ function handleLogin(event) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-    const logInForm = document.getElementById("logInForm");
+    const logInForm = document.getElementById("signUpForm");
     logInForm.addEventListener("submit", handleLogin);
 })
 
