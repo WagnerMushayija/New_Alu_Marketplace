@@ -68,7 +68,7 @@ app.use('/api/auth', authRoutes);
 
 // Protect these routes with authentication and authorization middleware
 app.use('/api/products', verifyToken, isAdmin, productRoutes);
-app.use('/api/product-categories', verifyToken, isAdmin, productCategoryRoutes);
+app.use('/api/productCategories', verifyToken, isAdmin, productCategoryRoutes);
 app.use('/api/cart', verifyToken, cartRoutes);
 app.use('/api/orders', verifyToken, orderRoutes);
 app.use('/api/users', verifyToken, userRoutes);
