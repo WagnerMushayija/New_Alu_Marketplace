@@ -44,8 +44,12 @@ fetch('http://localhost:5000/api/products')
             const productPrice = document.createElement("p");
             productPrice.textContent = `Price: $${item.price}`;
 
+            const productDescription = document.createElement("p");
+            productDescription.textContent = `Price: $${item.description}`;
+
             productItem.appendChild(productName);
             productItem.appendChild(productPrice);
+            productItem.appendChild(productDescription);
             dataContainer.appendChild(productItem);
         });
     })

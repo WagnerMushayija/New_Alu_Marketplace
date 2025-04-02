@@ -2,9 +2,9 @@
 
 function handleLogin(event) {
     event.preventDefault();
-
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
+    const formData = new FormData(event.target);
+    const username = formData.get("username")
+    const password = formData.get("password");
 
     fetch("http://localhost:5000/api/users/login", {
         method: "POST",
@@ -27,3 +27,9 @@ function handleLogin(event) {
         errorMessage.textContent = "An error occurred during login!";
     });
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    const logInForm = document.getElementById("logInForm");
+    logInForm.addEventListener("submit", handleLogin);
+})
+
