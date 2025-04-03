@@ -3,7 +3,7 @@
 function handleLogin(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
-    const username = formData.get("username");
+    const email = formData.get("email");
     const password = formData.get("password");
 
     fetch("http://localhost:5000/api/auth/login", {
@@ -11,7 +11,7 @@ function handleLogin(event) {
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({ username, password })
+        body: JSON.stringify({ email, password })
     })
     .then(response => response.json())
     .then(data => {
@@ -19,7 +19,7 @@ function handleLogin(event) {
             alert("Login successful!");
             window.location.href = "dashboard.html";
         } else {
-            errorMessage.textContent = "Invalid username or password!";
+            errorMessage.textContent = "Invalid email or password!";
         }
     })
     .catch(error => {
