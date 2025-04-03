@@ -2,16 +2,17 @@
 
 function handleLogin(event) {
     event.preventDefault();
+    const formData = new FormData(event.target);
+    const username = formData.get("username");
+    const email = formData.get("email");
+    const password = formData.get("password");
 
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
-
-    fetch("http://localhost:5000/api/users/login", {
+    fetch("http://localhost:5000/api/auth/register", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({ username, password })
+        body: JSON.stringify({ username, email, password })
     })
     .then(response => response.json())
     .then(data => {
@@ -27,3 +28,9 @@ function handleLogin(event) {
         errorMessage.textContent = "An error occurred during login!";
     });
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    const logInForm = document.getElementById("signUpForm");
+    logInForm.addEventListener("submit", handleLogin);
+})
+
