@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS product (
     FOREIGN KEY (inventory_id) REFERENCES product_inventory(id) ON DELETE SET NULL
 );
 
--- Orders Table (NEW)
+-- Orders Table
 CREATE TABLE IF NOT EXISTS orders (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     user_id INT UNSIGNED NOT NULL,
@@ -96,7 +96,7 @@ CREATE TABLE IF NOT EXISTS order_items (
     FOREIGN KEY (product_id) REFERENCES product(id) ON DELETE SET NULL
 );
 
--- Order Shipping Details Table (formerly order_details)
+-- Order Shipping Details Table
 CREATE TABLE IF NOT EXISTS order_shipping (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     order_id INT UNSIGNED NOT NULL,
@@ -108,12 +108,14 @@ CREATE TABLE IF NOT EXISTS order_shipping (
 -- Payments Table (linked with orders)
 CREATE TABLE IF NOT EXISTS payments (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    user_id INT UNSIGNED NOT NULL,  -- Added user_id column
     order_id INT UNSIGNED NOT NULL,
     payment_method ENUM('credit_card', 'mobile_money', 'paypal') NOT NULL,
     payment_status ENUM('pending', 'paid', 'failed') DEFAULT 'pending',
     transaction_id VARCHAR(100),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE
+    FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE  -- Added foreign key constraint
 );
 
 -- Payment Items Table (linked with payments)
@@ -147,4 +149,5 @@ CREATE TABLE IF NOT EXISTS cart_item (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (session_id) REFERENCES shopping_session(id) ON DELETE CASCADE,
-     FOREIGN KEY (product_id) REFERENCES product(id) ON DELETE CASCADE);
+    FOREIGN KEY (product_id) REFERENCES product(id) ON DELETE CASCADE
+);

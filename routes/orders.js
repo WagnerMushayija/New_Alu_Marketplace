@@ -1,42 +1,40 @@
+// routes/orderRoutes.js
 const express = require('express');
 const router = express.Router();
 const auth = require('../middleware/auth');
+const orderController = require('../controllers/orderController');
 
-// Placeholder controller
-const orderController = {
-  getAllOrders: (req, res) => {
-    res.status(200).json({
-      success: true,
-      message: 'Orders retrieved successfully',
-      data: []
-    });
-  },
-  getOrderById: (req, res) => {
-    res.status(200).json({
-      success: true,
-      message: 'Order retrieved successfully',
-      data: { id: req.params.id, status: 'pending', total: 0, items: [] }
-    });
-  },
-  createOrder: (req, res) => {
-    res.status(201).json({
-      success: true,
-      message: 'Order created successfully',
-      data: { id: 1, status: 'pending', total: req.body.total || 0, items: req.body.items || [] }
-    });
-  },
-  updateOrder: (req, res) => {
-    res.status(200).json({
-      success: true,
-      message: 'Order updated successfully',
-      data: { id: req.params.id, status: req.body.status || 'pending' }
+// Define middleware for checking admin role
+const isAdmin = (req, res, next) => {
+  if (req.user && req.user.role === 'admin') {
+    next();
+  } else {
+    res.status(403).json({
+      success: false,
+      message: 'Unauthorized: Admin access required'
     });
   }
 };
 
+// Get all orders (admin gets all, users get their own)
 router.get('/', auth.verifyToken, orderController.getAllOrders);
+
+// Get orders by status
+router.get('/status/:status', auth.verifyToken, orderController.getOrdersByStatus);
+
+// Get order by ID
 router.get('/:id', auth.verifyToken, orderController.getOrderById);
+
+// Create a new order
 router.post('/', auth.verifyToken, orderController.createOrder);
-router.put('/:id', auth.verifyToken, auth.isAdmin, orderController.updateOrder);
+
+// Update order status (admin only)
+router.put('/:id/status', auth.verifyToken, isAdmin, orderController.updateOrderStatus);
+
+// Update payment information
+router.put('/:id/payment', auth.verifyToken, orderController.updatePayment);
+
+// Delete order (admin only)
+router.delete('/:id', auth.verifyToken, isAdmin, orderController.deleteOrder);
 
 module.exports = router;
