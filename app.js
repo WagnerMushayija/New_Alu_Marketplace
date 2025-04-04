@@ -35,7 +35,6 @@ const { verifyToken, isAdmin } = require('./middleware/auth');
 const app = express();
 
 // Comprehensive Logging Middleware
-
 app.use(debugMiddleware);
 app.use((req, res, next) => {
   console.log(`Incoming Request: ${req.method} ${req.path}`);
@@ -66,9 +65,17 @@ app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
 // API routes
 app.use('/api/auth', authRoutes);
 
-// Protect these routes with authentication and authorization middleware
-app.use('/api/products', verifyToken, isAdmin, productRoutes);
-app.use('/api/productCategories', verifyToken, isAdmin, productCategoryRoutes);
+// Make GET routes for products public, but require auth for POST/PUT/DELETE
+// No need for separate routers because our routes file already separates these concerns
+app.use('/api/products', productRoutes);
+
+// Fix the path to match client requests - from productCategories to product-categories
+app.use('/api/product-categories', productCategoryRoutes);
+
+// Create alias route for existing implementation
+app.use('/api/productCategories', productCategoryRoutes);
+
+// Protect these routes with authentication middleware
 app.use('/api/cart', verifyToken, cartRoutes);
 app.use('/api/orders', verifyToken, orderRoutes);
 app.use('/api/users', verifyToken, userRoutes);

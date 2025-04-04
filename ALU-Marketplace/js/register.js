@@ -17,8 +17,8 @@ function handleLogin(event) {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            alert("Login successful!");
-            window.location.href = "dashboard.html";
+            alert("register successful!");
+            window.location.href = "login.html";
         } else {
             errorMessage.textContent = "Invalid username or password!";
         }
